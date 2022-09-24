@@ -1,0 +1,1 @@
+USER=golang PASS=golang DB=devbook go run main.go
