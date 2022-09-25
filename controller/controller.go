@@ -14,7 +14,14 @@ func HelloWeb(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-
-	dataBase.Close()
+	defer dataBase.Close()
 	w.Write([]byte("Hello web!"))
+}
+
+func Create(w http.ResponseWriter, r *http.Request) {
+	applicationlog.LogCreate()
+
+	ContollerCreate(r)
+
+	w.Write([]byte("CREATE"))
 }

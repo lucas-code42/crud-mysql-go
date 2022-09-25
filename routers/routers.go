@@ -14,6 +14,7 @@ func StartRouters() {
 	router.Use(middleware.ContentTypeMiddleware)
 
 	router.HandleFunc("/", controller.HelloWeb).Methods(http.MethodGet)
+	router.HandleFunc("/create", controller.Create).Methods(http.MethodPost)
 
 	log.Fatal(http.ListenAndServe(":5000", router))
 }

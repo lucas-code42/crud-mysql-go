@@ -1,1 +1,1 @@
-USER=golang PASS=golang DB=devbook go run main.go
+USER=dev PASS=dev DB=developer go run main.go
