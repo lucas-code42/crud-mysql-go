@@ -10,7 +10,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func ConnectionMySql() (*sql.DB, error) {
+func MySqlConnection() (*sql.DB, error) {
 	user := os.Getenv("USER")
 	pass := os.Getenv("PASS")
 	dataBase := os.Getenv("DB")
@@ -24,6 +24,6 @@ func ConnectionMySql() (*sql.DB, error) {
 	if err = db.Ping(); err != nil {
 		return nil, err
 	}
-	
+
 	return db, nil
 }

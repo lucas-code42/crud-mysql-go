@@ -10,7 +10,7 @@ import (
 func HelloWeb(w http.ResponseWriter, r *http.Request) {
 	applicationlog.LogHelloWeb()
 
-	dataBase, err := db.ConnectionMySql()
+	dataBase, err := db.MySqlConnection()
 	if err != nil {
 		return
 	}
@@ -18,6 +18,7 @@ func HelloWeb(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello web!"))
 }
 
+// Create cria um usuário no banco
 func Create(w http.ResponseWriter, r *http.Request) {
 	applicationlog.LogCreate()
 
