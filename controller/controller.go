@@ -38,3 +38,22 @@ func Create(w http.ResponseWriter, r *http.Request) {
 
 	w.Write(returnStmt)
 }
+
+// Delete deleta um usuário a partir de um ID
+func Delete(w http.ResponseWriter, r *http.Request) {
+	applicationlog.LogDelete()
+	_, err := ControllerDelete(r)
+	if err != nil {
+		w.Write([]byte("Fail to create new user"))
+		return
+	}
+
+	msg := map[string]string{"message": "user deleted"}
+	returnStmt, err := json.Marshal(msg)
+	if err != nil {
+		w.Write([]byte("Fail to delete user"))
+		return
+	}
+
+	w.Write(returnStmt)
+}

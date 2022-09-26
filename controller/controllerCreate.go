@@ -10,7 +10,7 @@ import (
 	"net/http"
 )
 
-// ContollerCreate funcao princiapal do pacote
+// ContollerCreate funcao princiapal do arquivo
 func ContollerCreate(r *http.Request) (models.User, error) {
 	var user models.User
 
