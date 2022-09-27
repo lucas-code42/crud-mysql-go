@@ -69,14 +69,12 @@ func ListAllUsers(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Fail to list users"))
 		return
 	}
-	
+
 	returnStmt, err := json.Marshal(users)
 	if err != nil {
 		w.Write([]byte("Fail to delete user"))
 		return
 	}
-	
-	w.Write(returnStmt)
 
-	
+	w.Write(returnStmt)
 }
