@@ -4,6 +4,7 @@ import (
 	applicationlog "crud-api-mysql/applicationLog"
 	"crud-api-mysql/db"
 	"encoding/json"
+	"fmt"
 
 	"net/http"
 )
@@ -25,6 +26,7 @@ func Create(w http.ResponseWriter, r *http.Request) {
 
 	_, err := ContollerCreate(r)
 	if err != nil {
+		fmt.Println(err)
 		w.Write([]byte("Fail to create new user"))
 		return
 	}
@@ -32,7 +34,8 @@ func Create(w http.ResponseWriter, r *http.Request) {
 	msg := map[string]string{"message": "user created"}
 	returnStmt, err := json.Marshal(msg)
 	if err != nil {
-		w.Write([]byte("Fail to create new user"))
+		fmt.Println(err)
+		w.Write([]byte("Fail to return msg user"))
 		return
 	}
 
@@ -56,4 +59,24 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Write(returnStmt)
+}
+
+// ListAllUsers lista todos os usuarios da tabela do banco de dados
+func ListAllUsers(w http.ResponseWriter, r *http.Request) {
+	applicationlog.LogListAllUsers()
+	users, err := ControllerListUsers(r)
+	if err != nil {
+		w.Write([]byte("Fail to list users"))
+		return
+	}
+	
+	returnStmt, err := json.Marshal(users)
+	if err != nil {
+		w.Write([]byte("Fail to delete user"))
+		return
+	}
+	
+	w.Write(returnStmt)
+
+	
 }
