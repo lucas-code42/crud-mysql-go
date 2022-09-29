@@ -5,9 +5,6 @@ import (
 	"database/sql"
 	"fmt"
 	"net/http"
-	"strconv"
-
-	"github.com/gorilla/mux"
 )
 
 // ControllerDelete função principal do arquivo
@@ -27,17 +24,6 @@ func ControllerDelete(r *http.Request) (int64, error) {
 	}
 
 	return deletedId, nil
-}
-
-// getUrlParameters pega o parametro da url e retorna um INT
-func getUrlParameters(r *http.Request) (int64, error) {
-	parameter := mux.Vars(r)
-	ID, err := strconv.ParseInt(parameter["id"], 10, 64)
-	if err != nil {
-		fmt.Println("Erro ao converter parametro da url para INT", err)
-		return -1, err
-	}
-	return ID, nil
 }
 
 // deleteOnDataBase cria e executa uma query para deletar dados do banco
