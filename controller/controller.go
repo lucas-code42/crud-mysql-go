@@ -78,3 +78,9 @@ func ListAllUsers(w http.ResponseWriter, r *http.Request) {
 
 	w.Write(returnStmt)
 }
+
+// UpdateUser atualiza um usuário existente dentro da base de dados
+func UpdateUser(w http.ResponseWriter, r *http.Request) {
+	applicationlog.LogUpdateUser()
+	
+}

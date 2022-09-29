@@ -19,5 +19,10 @@ func LogDelete() {
 
 // LogListAllUsers
 func LogListAllUsers() {
-	fmt.Println("path execution: controller/controller.go -> LogListAllUsers")
+	fmt.Println("path execution: controller/controller.go -> ListAllUsers")
+}
+
+// logUpdateUser
+func LogUpdateUser() {
+	fmt.Println("path execution: controller/controller.go -> UpdateUser")
 }
