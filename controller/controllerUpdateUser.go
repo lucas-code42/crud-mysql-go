@@ -19,4 +19,6 @@ func ControllerUpdateUser(r *http.Request) (string, error) {
 		return "", err
 	}
 	defer dataBase.Close()
+
+	return "", nil
 }
