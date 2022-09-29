@@ -6,6 +6,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
 // convertBodyToByte converte o corpo de uma req em slice de bytes
@@ -25,4 +28,15 @@ func convertBodyToStruct(body []byte, user *models.User) error {
 		return err
 	}
 	return nil
+}
+
+// getUrlParameters pega o parametro da url e retorna um INT
+func getUrlParameters(r *http.Request) (int64, error) {
+	parameter := mux.Vars(r)
+	ID, err := strconv.ParseInt(parameter["id"], 10, 64)
+	if err != nil {
+		fmt.Println("Erro ao converter parametro da url para INT", err)
+		return -1, err
+	}
+	return ID, nil
 }

@@ -82,5 +82,20 @@ func ListAllUsers(w http.ResponseWriter, r *http.Request) {
 // UpdateUser atualiza um usuário existente dentro da base de dados
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	applicationlog.LogUpdateUser()
+	alteredUser, err := ControllerUpdateUser(r)
+	if err != nil {
+		w.Write([]byte("Fail to list users"))
+		return
+	}
+
+	returnStmt, err := json.Marshal(alteredUser)
+	if err != nil {
+		w.Write([]byte("Fail to delete user"))
+		return
+	}
+
+	w.Write(returnStmt)
+
+
 	
 }
