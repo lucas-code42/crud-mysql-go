@@ -45,4 +45,5 @@ func executeQuery(dataBase *sql.DB, user models.User) error {
 		return err
 	}
 	return nil
+
 }
