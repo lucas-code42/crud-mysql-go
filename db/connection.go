@@ -11,6 +11,7 @@ import (
 )
 
 func MySqlConnection() (*sql.DB, error) {
+	
 	user := os.Getenv("USER")
 	pass := os.Getenv("PASS")
 	dataBase := os.Getenv("DB")
