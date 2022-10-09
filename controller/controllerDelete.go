@@ -2,6 +2,7 @@ package controller
 
 import (
 	"crud-api-mysql/db"
+	"crud-api-mysql/util"
 	"database/sql"
 	"fmt"
 	"net/http"
@@ -16,7 +17,7 @@ func ControllerDelete(r *http.Request) (int64, error) {
 	}
 	defer dataBase.Close()
 
-	ID, _ := getUrlParameters(r)
+	ID, _ := util.GetUrlParameters(r)
 
 	deletedId, err := deleteOnDataBase(dataBase, ID)
 	if err != nil {

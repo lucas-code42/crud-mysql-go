@@ -96,6 +96,4 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 
 	w.Write(returnStmt)
 
-
-	
 }

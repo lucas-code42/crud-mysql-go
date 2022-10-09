@@ -3,6 +3,7 @@ package controller
 import (
 	"crud-api-mysql/db"
 	"crud-api-mysql/models"
+	"crud-api-mysql/util"
 	"database/sql"
 	"fmt"
 	"net/http"
@@ -11,8 +12,8 @@ import (
 func ControllerUpdateUser(r *http.Request) (models.User, error) {
 	var user models.User
 
-	body, _ := convertBodyToByte(r)
-	convertBodyToStruct(body, &user)
+	body, _ := util.ConvertBodyToByte(r)
+	util.ConvertBodyToStruct(body, &user)
 
 	dataBase, err := db.MySqlConnection()
 	if err != nil {
@@ -21,7 +22,7 @@ func ControllerUpdateUser(r *http.Request) (models.User, error) {
 	}
 	defer dataBase.Close()
 
-	ID, _ := getUrlParameters(r)
+	ID, _ := util.GetUrlParameters(r)
 	alterUser(dataBase, user, ID)
 
 	user.Id = uint(ID)

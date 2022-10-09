@@ -1,10 +1,10 @@
-package controller
+package util
 
 import (
 	"crud-api-mysql/models"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strconv"
 
@@ -12,8 +12,8 @@ import (
 )
 
 // convertBodyToByte converte o corpo de uma req em slice de bytes
-func convertBodyToByte(r *http.Request) ([]byte, error) {
-	newBody, err := ioutil.ReadAll(r.Body)
+func ConvertBodyToByte(r *http.Request) ([]byte, error) {
+	newBody, err := io.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println("convertBodyToByte ", err)
 		return nil, err
@@ -22,7 +22,7 @@ func convertBodyToByte(r *http.Request) ([]byte, error) {
 }
 
 // convertBodyToStruct recebe o corpo de uma requisicao em bytes e modela na referencia de um usuario
-func convertBodyToStruct(body []byte, user *models.User) error {
+func ConvertBodyToStruct(body []byte, user *models.User) error {
 	if err := json.Unmarshal(body, &user); err != nil {
 		fmt.Println("convertBodyToStruct error ", err)
 		return err
@@ -31,7 +31,7 @@ func convertBodyToStruct(body []byte, user *models.User) error {
 }
 
 // getUrlParameters pega o parametro da url e retorna um INT
-func getUrlParameters(r *http.Request) (int64, error) {
+func GetUrlParameters(r *http.Request) (int64, error) {
 	parameter := mux.Vars(r)
 	ID, err := strconv.ParseInt(parameter["id"], 10, 64)
 	if err != nil {
