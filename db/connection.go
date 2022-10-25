@@ -1,8 +1,8 @@
 package db
 
 import (
+	"crud-api-mysql/config"
 	"database/sql"
-	"os"
 
 	// Import o Driver do MySql
 	// Por padrão o Go vai reclamar do pacote pois possui oiutras dependencias que não estarão explicitamente aqui
@@ -11,11 +11,8 @@ import (
 )
 
 func MySqlConnection() (*sql.DB, error) {
-	
-	user := os.Getenv("USER")
-	pass := os.Getenv("PASS")
-	dataBase := os.Getenv("DB")
-	urlConnection := user + ":" + pass + "@/" + dataBase + "?charset=utf8&parseTime=True&loc=Local"
+
+	urlConnection := config.StringConnection
 
 	db, err := sql.Open("mysql", urlConnection)
 	if err != nil {
